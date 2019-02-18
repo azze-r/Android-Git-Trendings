@@ -42,19 +42,23 @@ class MainActivity : AppCompatActivity() {
                 { response ->
                     try {
                         println(response)
-                        var jsonArray = response.getJSONArray("items")
+                        val jsonArray = response.getJSONArray("items")
                         for (i in 0 until jsonArray.length()) {
-                            val jo = jsonArray.getJSONObject(i)
-                            var owner = jo.getJSONObject("owner")
-                            var avatar = owner.getString("avatar_url")
-                            println(avatar)
-                            var name = jo.getString("name")
-                            println(name)
-                            var description = jo.getString("description")
-                            println(description)
 
-                            var stars = jo.getString("stargazers_count")
-                            println(stars)
+                            val jo = jsonArray.getJSONObject(i)
+                            val owner = jo.getJSONObject("owner")
+                            val avatar = owner.getString("avatar_url")
+                            val login = owner.getString("login")
+                            val name = jo.getString("name")
+                            val description = jo.getString("description")
+                            val stars = jo.getString("stargazers_count")
+
+                            val repos = GithubRepository()
+                            repos.avatar = avatar
+                            repos.login = login
+                            repos.name = name
+                            repos.description = description
+                            repos.stars = stars
                         }
                     } catch (e: JSONException) {
                         e.printStackTrace()
