@@ -22,6 +22,8 @@ class MainActivity : AppCompatActivity() {
 
     private var mRequestQueue: RequestQueue? = null
 
+    var arrayRepos = arrayListOf<GithubRepository>()
+
     @RequiresApi(Build.VERSION_CODES.KITKAT)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,8 +34,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-
-
     @RequiresApi(Build.VERSION_CODES.KITKAT)
     private fun fetchJsonResponse() {
         // Pass second argument as "null" for GET requests
@@ -41,8 +41,9 @@ class MainActivity : AppCompatActivity() {
                 Response.Listener
                 { response ->
                     try {
-                        println(response)
                         val jsonArray = response.getJSONArray("items")
+                        println(jsonArray.length())
+
                         for (i in 0 until jsonArray.length()) {
 
                             val jo = jsonArray.getJSONObject(i)
@@ -53,23 +54,23 @@ class MainActivity : AppCompatActivity() {
                             val description = jo.getString("description")
                             val stars = jo.getString("stargazers_count")
 
-                            val repos = GithubRepository()
-                            repos.avatar = avatar
-                            repos.login = login
-                            repos.name = name
-                            repos.description = description
-                            repos.stars = stars
+                            val repo = GithubRepository()
+                            repo.avatar = avatar
+                            repo.login = login
+                            repo.name = name
+                            repo.description = description
+                            repo.stars = stars
+                            println(repo.toString())
+                            arrayRepos.add(repo)
                         }
                     } catch (e: JSONException) {
                         e.printStackTrace()
                     }
                 },
-
                 Response.ErrorListener { error ->
                     Log.i("tryhard1", error.localizedMessage + error.message)
                 }
         )
-
 
         /* Add your Requests to the RequestQueue to execute */
         mRequestQueue?.add(req)
