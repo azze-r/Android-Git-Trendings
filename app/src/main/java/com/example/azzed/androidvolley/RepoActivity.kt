@@ -4,30 +4,28 @@ import android.os.Build
 import android.os.Bundle
 import android.support.annotation.RequiresApi
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
-import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import org.json.JSONArray
+import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONException
-import org.json.JSONObject
 
 
-
-
-class MainActivity : AppCompatActivity() {
+class RepoActivity : AppCompatActivity() {
 
     private var mRequestQueue: RequestQueue? = null
-
-    var arrayRepos = arrayListOf<GithubRepository>()
+    var arrayRepos = arrayListOf<RepoModel>()
+    lateinit var repoAdapter:RepoAdapter
 
     @RequiresApi(Build.VERSION_CODES.KITKAT)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        repoAdapter = RepoAdapter()
 
         mRequestQueue = Volley.newRequestQueue(this);
         fetchJsonResponse()
@@ -36,6 +34,7 @@ class MainActivity : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.KITKAT)
     private fun fetchJsonResponse() {
+        arrayRepos.clear()
         // Pass second argument as "null" for GET requests
         val req = JsonObjectRequest(Request.Method.GET, "https://api.github.com/search/repositories?q=created:%3E2017-10-22&sort=stars&order=desc&page", null,
                 Response.Listener
@@ -54,7 +53,7 @@ class MainActivity : AppCompatActivity() {
                             val description = jo.getString("description")
                             val stars = jo.getString("stargazers_count")
 
-                            val repo = GithubRepository()
+                            val repo = RepoModel()
                             repo.avatar = avatar
                             repo.login = login
                             repo.name = name
@@ -66,10 +65,17 @@ class MainActivity : AppCompatActivity() {
                     } catch (e: JSONException) {
                         e.printStackTrace()
                     }
+                    repoAdapter.addAll(arrayRepos)
+                    repoAdapter.notifyDataSetChanged()
+                    if (repoAdapter!=null) {
+                        recylcerRepo.adapter = repoAdapter
+                        recylcerRepo.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+                    }
                 },
                 Response.ErrorListener { error ->
                     Log.i("tryhard1", error.localizedMessage + error.message)
                 }
+
         )
 
         /* Add your Requests to the RequestQueue to execute */

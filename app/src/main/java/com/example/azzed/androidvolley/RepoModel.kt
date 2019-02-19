@@ -1,6 +1,6 @@
 package com.example.azzed.androidvolley
 
-class GithubRepository {
+class RepoModel {
     var avatar =""
     var login =""
     var name =""
@@ -15,7 +15,7 @@ class GithubRepository {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
 
-        other as GithubRepository
+        other as RepoModel
 
         if (avatar != other.avatar) return false
         if (login != other.login) return false
