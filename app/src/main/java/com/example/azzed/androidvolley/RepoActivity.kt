@@ -13,7 +13,7 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONException
-
+import java.util.*
 
 class RepoActivity : AppCompatActivity() {
 
@@ -25,18 +25,33 @@ class RepoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        repoAdapter = RepoAdapter()
+        repoAdapter = RepoAdapter(this)
 
         mRequestQueue = Volley.newRequestQueue(this);
         fetchJsonResponse()
+        println(Calendar.getInstance().toString())
 
     }
 
     @RequiresApi(Build.VERSION_CODES.KITKAT)
     private fun fetchJsonResponse() {
         arrayRepos.clear()
+        val date = Date() // your date
+        val cal = Calendar.getInstance()
+        cal.time = date
+        val year = cal.get(Calendar.YEAR).toString()
+        var month = cal.get(Calendar.MONTH).toString()
+        // ISO 8601 date/time value, such as YYYY-MM-DD."
+        if (month.length==1)
+            month = "0$month"
+
+        var day = cal.get(Calendar.DAY_OF_MONTH).toString()
+        if (day.length==1)
+            day = "0$day"
+
+        Log.i("mydate","https://api.github.com/search/repositories?q=created:%3E$year-$month-$day&sort=stars&order=desc&page")
         // Pass second argument as "null" for GET requests
-        val req = JsonObjectRequest(Request.Method.GET, "https://api.github.com/search/repositories?q=created:%3E2017-10-22&sort=stars&order=desc&page", null,
+        val req = JsonObjectRequest(Request.Method.GET, "https://api.github.com/search/repositories?q=created:%3E$year-$month-$day&sort=stars&order=desc&page", null,
                 Response.Listener
                 { response ->
                     try {
@@ -48,10 +63,12 @@ class RepoActivity : AppCompatActivity() {
                             val jo = jsonArray.getJSONObject(i)
                             val owner = jo.getJSONObject("owner")
                             val avatar = owner.getString("avatar_url")
+
                             val login = owner.getString("login")
                             val name = jo.getString("name")
                             val description = jo.getString("description")
                             val stars = jo.getString("stargazers_count")
+                            val html_url = jo.getString("html_url")
 
                             val repo = RepoModel()
                             repo.avatar = avatar
@@ -59,7 +76,7 @@ class RepoActivity : AppCompatActivity() {
                             repo.name = name
                             repo.description = description
                             repo.stars = stars
-                            println(repo.toString())
+                            repo.html_url = html_url
                             arrayRepos.add(repo)
                         }
                     } catch (e: JSONException) {
