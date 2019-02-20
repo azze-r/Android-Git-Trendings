@@ -49,7 +49,6 @@ class RepoActivity : AppCompatActivity() {
         })
     }
 
-    @RequiresApi(Build.VERSION_CODES.KITKAT)
     private fun fetchJsonResponse(page:Int) {
         arrayRepos.clear()
         val date = Date() // your date
