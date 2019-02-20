@@ -2,6 +2,8 @@
 
 Here is an android project that fetch github api to load most trendings repos clickable with some features :
 
+- This reques is based on current Date
+
 - Repos are scrollable with dynamically reload using pagination
 
 - github api with link : https://api.github.com/search/repositories?q=created:%3E2017-10-22&sort=stars&order=desc
