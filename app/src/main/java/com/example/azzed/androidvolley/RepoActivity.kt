@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.annotation.RequiresApi
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.util.Log
 import com.android.volley.Request
 import com.android.volley.RequestQueue
@@ -14,10 +15,6 @@ import com.android.volley.toolbox.Volley
 import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONException
 import java.util.*
-import android.widget.Toast
-import android.support.v4.view.ViewCompat.canScrollVertically
-import android.support.v7.widget.RecyclerView
-
 
 
 class RepoActivity : AppCompatActivity() {
@@ -42,8 +39,8 @@ class RepoActivity : AppCompatActivity() {
                 super.onScrollStateChanged(recyclerView, newState)
 
                 if (!recyclerView.canScrollVertically(1)) {
-                    fetchJsonResponse(page)
                     page++
+                    fetchJsonResponse(page)
                 }
             }
         })
