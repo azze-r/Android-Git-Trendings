@@ -6,11 +6,11 @@ Here is an android project that fetch github api to load most trendings repos cl
 
 - [Glide](https://github.com/bumptech/glide) library to load picture dynamically 
 
-- CardView to display datas : 
+- [CardView](https://developer.android.com/guide/topics/ui/layout/cardview) to display datas on layout
 
-- Recyclerview to load dynamically datas
+- [Recyclerview](https://developer.android.com/guide/topics/ui/layout/recyclerview) to load dynamically datas
 
-- Volley library to fetch Json data from github API
+- [Volley](https://developer.android.com/training/volley/) library to fetch Json data from github API
 
 - Here is how does it looks like :
 
