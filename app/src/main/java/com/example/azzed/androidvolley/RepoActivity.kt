@@ -14,13 +14,18 @@ import com.android.volley.toolbox.Volley
 import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONException
 import java.util.*
+import android.widget.Toast
+import android.support.v4.view.ViewCompat.canScrollVertically
+import android.support.v7.widget.RecyclerView
+
+
 
 class RepoActivity : AppCompatActivity() {
 
     private var mRequestQueue: RequestQueue? = null
     var arrayRepos = arrayListOf<RepoModel>()
     lateinit var repoAdapter:RepoAdapter
-
+    var page = 0
     @RequiresApi(Build.VERSION_CODES.KITKAT)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,13 +33,24 @@ class RepoActivity : AppCompatActivity() {
         repoAdapter = RepoAdapter(this)
 
         mRequestQueue = Volley.newRequestQueue(this);
-        fetchJsonResponse()
+        fetchJsonResponse(page)
         println(Calendar.getInstance().toString())
 
+        // when scroll is down, reload data with new page
+        recylcerRepo.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+
+                if (!recyclerView.canScrollVertically(1)) {
+                    fetchJsonResponse(page)
+                    page++
+                }
+            }
+        })
     }
 
     @RequiresApi(Build.VERSION_CODES.KITKAT)
-    private fun fetchJsonResponse() {
+    private fun fetchJsonResponse(page:Int) {
         arrayRepos.clear()
         val date = Date() // your date
         val cal = Calendar.getInstance()
@@ -51,7 +67,7 @@ class RepoActivity : AppCompatActivity() {
 
         Log.i("mydate","https://api.github.com/search/repositories?q=created:%3E$year-$month-$day&sort=stars&order=desc&page")
         // Pass second argument as "null" for GET requests
-        val req = JsonObjectRequest(Request.Method.GET, "https://api.github.com/search/repositories?q=created:%3E$year-$month-$day&sort=stars&order=desc&page", null,
+        val req = JsonObjectRequest(Request.Method.GET, "https://api.github.com/search/repositories?q=created:%3E$year-$month-$day&sort=stars&order=desc&page=$page", null,
                 Response.Listener
                 { response ->
                     try {
@@ -79,26 +95,33 @@ class RepoActivity : AppCompatActivity() {
                             repo.html_url = html_url
                             arrayRepos.add(repo)
                         }
+
+                        populateRecycler(arrayRepos)
+
                     } catch (e: JSONException) {
                         e.printStackTrace()
                     }
-                    repoAdapter.addAll(arrayRepos)
-                    repoAdapter.notifyDataSetChanged()
-                    if (repoAdapter!=null) {
-                        recylcerRepo.adapter = repoAdapter
-                        recylcerRepo.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-                    }
+
                 },
                 Response.ErrorListener { error ->
                     Log.i("tryhard1", error.localizedMessage + error.message)
                 }
 
         )
-
         /* Add your Requests to the RequestQueue to execute */
         mRequestQueue?.add(req)
+    }
+
+    fun populateRecycler(array: List<RepoModel>){
+        repoAdapter.addAll(array)
+        repoAdapter.notifyDataSetChanged()
+        if (repoAdapter!=null) {
+            recylcerRepo.adapter = repoAdapter
+            recylcerRepo.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        }
 
     }
+
 
 
 }

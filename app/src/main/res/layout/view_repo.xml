@@ -48,6 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
+                android:layout_marginBottom="2dp"
                 android:numStars="1"
                 android:rating="5"
                 app:layout_constraintBottom_toBottomOf="@+id/tvRating"
@@ -56,28 +57,16 @@
                 app:layout_constraintVertical_bias="1.0" />
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/tvRating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
                 android:fontFamily="sans-serif-medium"
-                android:text="k"
+                android:text="5"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
-
-            <TextView
-                android:id="@+id/tvRating"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:fontFamily="sans-serif-medium"
-                android:text="5"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="@+id/textView"
-                app:layout_constraintEnd_toStartOf="@+id/textView"
-                app:layout_constraintTop_toTopOf="@+id/textView" />
 
             <TextView
                 android:id="@+id/tvDescription"
