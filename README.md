@@ -2,6 +2,8 @@
 
 Here is an android project that fetch github api to load most trendings repos clickable with some features :
 
+- Repos are scrollable with dynamically reload using pagination
+
 - github api with link : https://api.github.com/search/repositories?q=created:%3E2017-10-22&sort=stars&order=desc
 
 - [Glide](https://github.com/bumptech/glide) library to load picture dynamically 
