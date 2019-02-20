@@ -11,3 +11,5 @@ Here is an android project that fetch github api to load most trendings repos cl
 - Recyclerview to load dynamically datas
 
 - Volley library to fetch Json data from github API
+
+![alt text](https://github.com/boblinux/AndroidGithubApi/blob/master/screen.png)
