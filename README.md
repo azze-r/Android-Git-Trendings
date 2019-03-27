@@ -18,4 +18,4 @@ Here is an android project that fetch github api to load most trendings repos cl
 
 - Here is how does it looks like :
 
-![alt text](https://github.com/boblinux/AndroidGithubApi/blob/master/screen.jpg)
+![alt text](https://github.com/boblinux/AndroidGithubStars/blob/master/screen.jpg)
