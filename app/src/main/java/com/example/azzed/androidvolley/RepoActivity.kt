@@ -34,20 +34,20 @@ class RepoActivity : AppCompatActivity() {
         println(Calendar.getInstance().toString())
 
         // when scroll is down, reload data with new page
-        recylcerRepo.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState)
-
-                if (!recyclerView.canScrollVertically(1)) {
-                    page++
-                    fetchJsonResponse(page)
-                }
-            }
-        })
+//        recylcerRepo.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+//            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+//                super.onScrollStateChanged(recyclerView, newState)
+//
+//                if (!recyclerView.canScrollVertically(1)) {
+//                    page++
+//                    fetchJsonResponse(page)
+//                }
+//            }
+//        })
     }
 
     private fun fetchJsonResponse(page:Int) {
-        arrayRepos.clear()
+//        arrayRepos.clear()
         val date = Date() // your date
         val cal = Calendar.getInstance()
         cal.time = date
@@ -61,9 +61,10 @@ class RepoActivity : AppCompatActivity() {
         if (day.length==1)
             day = "0$day"
 
+        Log.i("mydate","$year-$month-$day")
         Log.i("mydate","https://api.github.com/search/repositories?q=created:%3E$year-$month-$day&sort=stars&order=desc&page")
         // Pass second argument as "null" for GET requests
-        val req = JsonObjectRequest(Request.Method.GET, "https://api.github.com/search/repositories?q=created:%3E$year-$month-$day&sort=stars&order=desc&page=$page", null,
+        val req = JsonObjectRequest(Request.Method.GET, "https://api.github.com/search/repositories?q=created:%3E$year-$month-$day&sort=stars&order=desc&page", null,
                 Response.Listener
                 { response ->
                     try {
@@ -117,8 +118,6 @@ class RepoActivity : AppCompatActivity() {
         }
 
     }
-
-
 
 }
 

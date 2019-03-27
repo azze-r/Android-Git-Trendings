@@ -25,7 +25,7 @@ class RepoAdapter(repoActivity: RepoActivity) : BaseListAdapter<RepoModel>(){
             tvName.text = repo.name
             tvDescription.text = repo.description
             tvLogin.text = repo.login
-            tvRating.text = repo.stars
+            tvRating.text = withSuffix(repo.stars.toLong())
 
             if (!repo.avatar.isEmpty())
                 ImageUtils.loadImage(repo.avatar, R.mipmap.noimage, picture)
