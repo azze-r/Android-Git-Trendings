@@ -23,22 +23,22 @@ class RepoAdapter(repoActivity: RepoActivity) : BaseListAdapter<RepoModel>(){
         val repo = items[position]
         holder.itemView.apply {
             tvName.text = repo.name
-            tvDescription.text = repo.description
-            tvLogin.text = repo.login
-            tvRating.text = withSuffix(repo.stars.toLong())
-
-            if (!repo.avatar.isEmpty())
-                ImageUtils.loadImage(repo.avatar, R.mipmap.noimage, picture)
-            else
-                picture.setBackgroundResource(R.mipmap.noimage)
+//            tvDescription.text = repo.description
+//            tvLogin.text = repo.login
+//            tvRating.text = withSuffix(repo.stars.toLong())
+//
+//            if (!repo.avatar.isEmpty())
+//                ImageUtils.loadImage(repo.avatar, R.mipmap.noimage, picture)
+//            else
+//                picture.setBackgroundResource(R.mipmap.noimage)
         }
 
         holder.itemView.setOnClickListener {
-            val url = repo.html_url
-
-            val i = Intent(Intent.ACTION_VIEW)
-            i.data = Uri.parse(url)
-            myactivity.startActivity(i)
+//            val url = repo.html_url
+//
+//            val i = Intent(Intent.ACTION_VIEW)
+//            i.data = Uri.parse(url)
+//            myactivity.startActivity(i)
         }
     }
 }

@@ -10,11 +10,17 @@ import android.util.Log
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
+import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import kotlinx.android.synthetic.main.activity_main.*
+import org.json.JSONArray
 import org.json.JSONException
 import java.util.*
+
+
+
+
 
 
 class RepoActivity : AppCompatActivity() {
@@ -62,46 +68,61 @@ class RepoActivity : AppCompatActivity() {
             day = "0$day"
 
         Log.i("mydate","$year-$month-$day")
-        Log.i("mydate","https://api.github.com/search/repositories?q=created:%3E$year-$month-$day&sort=stars&order=desc&page")
+        Log.i("mydate","https://github-trending-api.now.sh/repositories?language=kotlin&since=monthly")
         // Pass second argument as "null" for GET requests
-        val req = JsonObjectRequest(Request.Method.GET, "https://api.github.com/search/repositories?q=created:%3E$year-$month-$day&sort=stars&order=desc&page", null,
+        val req = JsonArrayRequest(Request.Method.GET, "https://github-trending-api.now.sh/repositories?language=kotlin&since=monthly", null,
                 Response.Listener
                 { response ->
                     try {
-                        val jsonArray = response.getJSONArray("items")
-                        println(jsonArray.length())
+//                        longLog(response.toString())
+//                        val jsonArray = response.getJSONObject("items")
+//                        println(jsonArray.length())
 
-                        for (i in 0 until jsonArray.length()) {
-
-                            val jo = jsonArray.getJSONObject(i)
-                            val owner = jo.getJSONObject("owner")
-                            val avatar = owner.getString("avatar_url")
-
-                            val login = owner.getString("login")
-                            val name = jo.getString("name")
-                            val description = jo.getString("description")
-                            val stars = jo.getString("stargazers_count")
-                            val html_url = jo.getString("html_url")
+                        for (i in 0 until response.length()) {
+                            val jo = response.getJSONObject(i)
+                            longLog(jo.toString())
+                            val login = jo.getString("author")
+                            longLog(login)
 
                             val repo = RepoModel()
-                            repo.avatar = avatar
-                            repo.login = login
-                            repo.name = name
-                            repo.description = description
-                            repo.stars = stars
-                            repo.html_url = html_url
+                            repo.name = login
                             arrayRepos.add(repo)
+//                            val owner = jo.getJSONObject("author")
+//                            longLog(owner.toString())
                         }
-
+//
+//                            val jo = jsonArray.getJSONObject(i)
+//                            val owner = jo.getJSONObject("owner")
+//                            val avatar = owner.getString("avatar_url")
+//
+//                            val login = owner.getString("login")
+//                            val name = jo.getString("name")
+//                            val description = jo.getString("description")
+//                            val stars = jo.getString("stargazers_count")
+//                            val html_url = jo.getString("html_url")
+//
+//                            val repo = RepoModel()
+//                            repo.avatar = avatar
+//                            repo.login = login
+//                            repo.name = name
+//                            repo.description = description
+//                            repo.stars = stars
+//                            repo.html_url = html_url
+//                            arrayRepos.add(repo)
+//                        }
+//
                         populateRecycler(arrayRepos)
 
-                    } catch (e: JSONException) {
+                    }
+                    catch (e: JSONException) {
                         e.printStackTrace()
+
                     }
 
                 },
+
                 Response.ErrorListener { error ->
-                    Log.i("tryhard1", error.localizedMessage + error.message)
+                    longLog(error.toString())
                 }
 
         )
@@ -117,6 +138,14 @@ class RepoActivity : AppCompatActivity() {
             recylcerRepo.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         }
 
+    }
+
+    fun longLog(str: String) {
+        if (str.length > 4000) {
+            Log.d("tryhard", str.substring(0, 4000))
+            longLog(str.substring(4000))
+        } else
+            Log.d("tryhard", str)
     }
 
 }
