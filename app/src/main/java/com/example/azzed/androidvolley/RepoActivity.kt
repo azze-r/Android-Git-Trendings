@@ -46,8 +46,6 @@ class RepoActivity : AppCompatActivity() {
         fetchJsonResponse()
 
 
-
-
     }
 
     private fun fetchJsonResponse() {
