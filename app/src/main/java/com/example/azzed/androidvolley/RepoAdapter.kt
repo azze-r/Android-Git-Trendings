@@ -22,23 +22,19 @@ class RepoAdapter(repoActivity: RepoActivity) : BaseListAdapter<RepoModel>(){
     override fun onBindChildViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val repo = items[position]
         holder.itemView.apply {
+            tvLogin.text = repo.login
             tvName.text = repo.name
-//            tvDescription.text = repo.description
-//            tvLogin.text = repo.login
-//            tvRating.text = withSuffix(repo.stars.toLong())
-//
-//            if (!repo.avatar.isEmpty())
-//                ImageUtils.loadImage(repo.avatar, R.mipmap.noimage, picture)
-//            else
-//                picture.setBackgroundResource(R.mipmap.noimage)
+            ImageUtils.loadImage(repo.avatar, R.mipmap.noimage, picture)
+            tvDescription.text = repo.description
+            tvRating.text = withSuffix(repo.stars.toLong())
         }
 
         holder.itemView.setOnClickListener {
-//            val url = repo.html_url
-//
-//            val i = Intent(Intent.ACTION_VIEW)
-//            i.data = Uri.parse(url)
-//            myactivity.startActivity(i)
+            val url = repo.html_url
+
+            val i = Intent(Intent.ACTION_VIEW)
+            i.data = Uri.parse(url)
+            myactivity.startActivity(i)
         }
     }
 }

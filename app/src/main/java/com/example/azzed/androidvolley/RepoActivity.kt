@@ -34,26 +34,12 @@ class RepoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         repoAdapter = RepoAdapter(this)
-
         mRequestQueue = Volley.newRequestQueue(this);
         fetchJsonResponse(page)
-        println(Calendar.getInstance().toString())
 
-        // when scroll is down, reload data with new page
-//        recylcerRepo.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-//            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-//                super.onScrollStateChanged(recyclerView, newState)
-//
-//                if (!recyclerView.canScrollVertically(1)) {
-//                    page++
-//                    fetchJsonResponse(page)
-//                }
-//            }
-//        })
     }
 
     private fun fetchJsonResponse(page:Int) {
-//        arrayRepos.clear()
         val date = Date() // your date
         val cal = Calendar.getInstance()
         cal.time = date
@@ -74,45 +60,27 @@ class RepoActivity : AppCompatActivity() {
                 Response.Listener
                 { response ->
                     try {
-//                        longLog(response.toString())
-//                        val jsonArray = response.getJSONObject("items")
-//                        println(jsonArray.length())
 
                         for (i in 0 until response.length()) {
                             val jo = response.getJSONObject(i)
-                            longLog(jo.toString())
-                            val login = jo.getString("author")
-                            longLog(login)
 
                             val repo = RepoModel()
-                            repo.name = login
-                            arrayRepos.add(repo)
-//                            val owner = jo.getJSONObject("author")
-//                            longLog(owner.toString())
-                        }
-//
-//                            val jo = jsonArray.getJSONObject(i)
-//                            val owner = jo.getJSONObject("owner")
-//                            val avatar = owner.getString("avatar_url")
-//
-//                            val login = owner.getString("login")
-//                            val name = jo.getString("name")
-//                            val description = jo.getString("description")
-//                            val stars = jo.getString("stargazers_count")
-//                            val html_url = jo.getString("html_url")
-//
-//                            val repo = RepoModel()
-//                            repo.avatar = avatar
-//                            repo.login = login
-//                            repo.name = name
-//                            repo.description = description
-//                            repo.stars = stars
-//                            repo.html_url = html_url
-//                            arrayRepos.add(repo)
-//                        }
-//
-                        populateRecycler(arrayRepos)
 
+                            repo.login = jo.getString("author")
+                            repo.name = jo.getString("name")
+                            repo.avatar = jo.getString("avatar")
+                            repo.html_url = jo.getString("url")
+                            repo.description = jo.getString("description")
+                            repo.stars = jo.getString("stars")
+                            Log.i("tryhard",jo.toString())
+//                            val obj = jo.getJSONObject("repo")
+//                            repo.name = obj.getString("name")
+//                            repo.description = obj.getString("descriptio")
+//                            repo.avatar = obj.getString("url")
+
+                            arrayRepos.add(repo)
+                        }
+                        populateRecycler(arrayRepos)
                     }
                     catch (e: JSONException) {
                         e.printStackTrace()
