@@ -20,8 +20,7 @@ import android.support.v4.app.SupportActivity
 import android.support.v4.app.SupportActivity.ExtraData
 import android.support.v4.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-
-
+import android.view.View
 
 
 class RepoActivity : AppCompatActivity() {
@@ -36,6 +35,8 @@ class RepoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        progress.visibility = View.VISIBLE
         repoAdapter = RepoAdapter(this)
         mRequestQueue = Volley.newRequestQueue(this)
 
@@ -68,6 +69,7 @@ class RepoActivity : AppCompatActivity() {
                             Log.i("tryhard",jo.toString())
                             arrayRepos.add(repo)
                         }
+                        progress.visibility = View.GONE
                         populateRecycler(arrayRepos)
                     }
                     catch (e: JSONException) {

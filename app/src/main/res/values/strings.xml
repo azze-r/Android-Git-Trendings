@@ -3,4 +3,6 @@
     <string name="frequency_trends">Frequency : daily, weekly or monthly</string>
     <string name="choice_your_langage_p">Choice your favorite language</string>
     <string name="next">Next</string>
+    <string name="saved_langage">kotlin</string>
+    <string name="saved_frequency">monthly</string>
 </resources>

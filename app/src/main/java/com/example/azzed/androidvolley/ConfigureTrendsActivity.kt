@@ -1,24 +1,18 @@
 package com.example.azzed.androidvolley
 
+import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
-import com.example.azzed.androidvolley.utils.LogsUtils
 import com.example.azzed.androidvolley.utils.LogsUtils.longLog
 import kotlinx.android.synthetic.main.activity_configure_trends.*
 import org.json.JSONException
-import java.util.*
 import android.widget.ArrayAdapter
-import android.support.v4.app.SupportActivity
-import android.support.v4.app.SupportActivity.ExtraData
-import android.support.v4.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.widget.Toast
 
 
@@ -31,6 +25,17 @@ class ConfigureTrendsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_configure_trends)
+
+        val sharedPref = this.getPreferences(Context.MODE_PRIVATE) ?: return
+
+        val defaultLangage = resources.getString(R.string.saved_langage)
+        val langage = sharedPref.getString(getString(R.string.saved_langage), defaultLangage)
+
+        val defaultFrequency = resources.getString(R.string.saved_frequency)
+        val frequency = sharedPref.getString(getString(R.string.saved_frequency), defaultFrequency)
+
+        langageAutoComplete.setText(langage)
+        frequencyAutoComplete.setText(frequency)
 
         mRequestQueue = Volley.newRequestQueue(this)
         fetchJsonResponse()
@@ -49,6 +54,13 @@ class ConfigureTrendsActivity : AppCompatActivity() {
                 Toast.makeText(this, "Please choice language and frequency", Toast.LENGTH_LONG).show()
             }
             else {
+                val sharedPref = this.getPreferences(Context.MODE_PRIVATE)
+                with (sharedPref.edit()) {
+                    putString(getString(R.string.saved_langage), langageAutoComplete.text.toString())
+                    putString(getString(R.string.saved_frequency), frequencyAutoComplete.text.toString())
+                    commit()
+                }
+
                 val intent = Intent(this, RepoActivity::class.java)
                 intent.putExtra("language", langageAutoComplete.text.toString())
                 intent.putExtra("frequency", frequencyAutoComplete.text.toString())
