@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_repos">
+
+    <fragment
+        android:id="@+id/navigation_repos"
+        android:name="com.projet.azzed.androidvolley.ui.ReposFragment"
+        android:label="@string/repos"
+        tools:layout="@layout/fragment_repos" >
+        <action
+            android:id="@+id/action_navigation_repos_to_navigation_configure"
+            app:destination="@id/navigation_configure" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_configure"
+        android:name="com.projet.azzed.androidvolley.ui.ConfigureFragment"
+        android:label="@string/configure"
+        tools:layout="@layout/fragment_configure_trends" >
+        <action
+            android:id="@+id/action_navigation_diapo_to_navigation_repos"
+            app:destination="@id/navigation_repos"/>
+        <argument
+            android:name="langage"
+            app:argType="string" />
+        <argument
+            android:name="frequency"
+            app:argType="string" />
+    </fragment>
+
+</navigation>

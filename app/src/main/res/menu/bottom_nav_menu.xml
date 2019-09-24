@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_repos"
+        android:icon="@drawable/round_waves_black_48"
+        android:title="@string/repos" />
+
+    <item
+        android:id="@+id/navigation_configure"
+        android:icon="@drawable/round_settings_applications_black_48"
+        android:title="@string/configure" />
+
+</menu>
