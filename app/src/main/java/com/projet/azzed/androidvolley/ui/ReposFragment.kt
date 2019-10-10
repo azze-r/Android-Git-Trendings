@@ -95,7 +95,6 @@ class ReposFragment : Fragment() {
                     }
                     catch (e: JSONException) {
                         e.printStackTrace()
-
                     }
 
                 },

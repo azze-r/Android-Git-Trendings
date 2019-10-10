@@ -6,16 +6,6 @@
     app:startDestination="@+id/navigation_repos">
 
     <fragment
-        android:id="@+id/navigation_repos"
-        android:name="com.projet.azzed.androidvolley.ui.ReposFragment"
-        android:label="@string/repos"
-        tools:layout="@layout/fragment_repos" >
-        <action
-            android:id="@+id/action_navigation_repos_to_navigation_configure"
-            app:destination="@id/navigation_configure" />
-    </fragment>
-
-    <fragment
         android:id="@+id/navigation_configure"
         android:name="com.projet.azzed.androidvolley.ui.ConfigureFragment"
         android:label="@string/configure"
@@ -30,5 +20,30 @@
             android:name="frequency"
             app:argType="string" />
     </fragment>
+
+    <fragment
+        android:id="@+id/navigation_repos"
+        android:name="com.projet.azzed.androidvolley.ui.ReposFragment"
+        android:label="@string/repos"
+        tools:layout="@layout/fragment_repos" >
+        <action
+            android:id="@+id/action_navigation_repos_to_navigation_configure"
+            app:destination="@id/navigation_configure" />
+        <action
+            android:id="@+id/action_navigation_repos_to_detail_repo"
+            app:destination="@id/detail_repo" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detail_repo"
+        android:name="com.projet.azzed.androidvolley.ui.DetailFragment"
+        android:label="detail"
+        tools:layout="@layout/detail_fragment" >
+        <argument
+            android:name="link"
+            app:argType="string" />
+    </fragment>
+
+
 
 </navigation>

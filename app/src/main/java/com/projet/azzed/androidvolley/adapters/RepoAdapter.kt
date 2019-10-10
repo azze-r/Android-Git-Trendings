@@ -3,9 +3,11 @@ package com.projet.azzed.androidvolley.adapters
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
+import android.os.Bundle
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import com.projet.azzed.androidvolley.R
 import com.projet.azzed.androidvolley.model.RepoModel
 import com.projet.azzed.androidvolley.ui.ReposFragment
@@ -32,11 +34,15 @@ class RepoAdapter(reposFragment: ReposFragment) : BaseListAdapter<RepoModel>(){
         }
 
         holder.itemView.setOnClickListener {
-            val url = repo.html_url
+//            val url = repo.html_url
+//
+//            val i = Intent(Intent.ACTION_VIEW)
+//            i.data = Uri.parse(url)
+//            myactivity.startActivity(i)
 
-            val i = Intent(Intent.ACTION_VIEW)
-            i.data = Uri.parse(url)
-            myactivity.startActivity(i)
+            val bundle = Bundle()
+            bundle.putString("link",repo.html_url)
+            it.findNavController().navigate(R.id.action_navigation_repos_to_detail_repo,bundle)
         }
     }
 }
