@@ -52,6 +52,11 @@
                         </option>
                         <option name="myPositions">
                           <map>
+                            <entry key="action_navigation_repos_to_detail_repo">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                             <entry key="action_navigation_repos_to_navigation_configure">
                               <value>
                                 <LayoutPositions />

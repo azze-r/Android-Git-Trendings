@@ -29,7 +29,6 @@ class ReposFragment : Fragment() {
 
     private var mRequestQueue: RequestQueue? = null
     var arrayRepos = arrayListOf<RepoModel>()
-    lateinit var repoAdapter: RepoAdapter
     var langage:String? = null
     var frequency:String? = null
     lateinit var progress: ProgressBar
@@ -59,7 +58,6 @@ class ReposFragment : Fragment() {
         }
 
         progress.visibility = View.VISIBLE
-        repoAdapter = RepoAdapter(this)
         mRequestQueue = Volley.newRequestQueue(context)
 
         fetchJsonResponse()
@@ -70,7 +68,7 @@ class ReposFragment : Fragment() {
 
     private fun fetchJsonResponse() {
 
-        Log.i("tryhard","https://github-trending-api.now.sh/repositories?language=$langage&since=$frequency")
+        arrayRepos.clear()
         val req = JsonArrayRequest(Request.Method.GET, "https://github-trending-api.now.sh/repositories?language=$langage&since=$frequency", null,
                 Response.Listener
                 { response ->
@@ -87,7 +85,6 @@ class ReposFragment : Fragment() {
                             repo.html_url = jo.getString("url")
                             repo.description = jo.getString("description")
                             repo.stars = jo.getString("stars")
-                            Log.i("tryhard",jo.toString())
                             arrayRepos.add(repo)
                         }
                         progress.visibility = View.GONE
@@ -108,8 +105,11 @@ class ReposFragment : Fragment() {
     }
 
     fun populateRecycler(array: List<RepoModel>){
+        val repoAdapter = RepoAdapter(this)
+        Log.i("tryhard", array.size.toString())
         repoAdapter.addAll(array)
         repoAdapter.notifyDataSetChanged()
+        recylcerRepo.adapter?.notifyDataSetChanged()
         recylcerRepo.adapter = repoAdapter
         recylcerRepo.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
     }
