@@ -16,8 +16,7 @@ Here is an android project that fetch github api to load most trendings repos cl
 
 - Here is how does it looks like :
 
-![](https://github.com/azze-r/AndroidGithubTrends/blob/master/screen1.jpg?v=4&s=200)
-
+<img src="https://github.com/azze-r/AndroidGithubTrends/blob/master/screen1.jpg" width="100" height="100">
 
 ![alt text](https://github.com/azze-r/AndroidGithubTrends/blob/master/screen2.jpg){:height="100px" width="300px"}
 ![alt text](https://github.com/azze-r/AndroidGithubTrends/blob/master/screen3.png){:height="100px" width="300px"}
