@@ -12,6 +12,8 @@
       <module fileurl="file://$PROJECT_DIR$/Jean-AndroidStudioProjects-AndroidGithubTrends.iml" filepath="$PROJECT_DIR$/Jean-AndroidStudioProjects-AndroidGithubTrends.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/Jean-AndroidStudioProjects-AndroidGithubTrends-app.iml" filepath="$PROJECT_DIR$/app/Jean-AndroidStudioProjects-AndroidGithubTrends-app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/search-AndroidGithubTrends.iml" filepath="$PROJECT_DIR$/search-AndroidGithubTrends.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/search-AndroidGithubTrends-app.iml" filepath="$PROJECT_DIR$/app/search-AndroidGithubTrends-app.iml" />
     </modules>
   </component>
 </project>

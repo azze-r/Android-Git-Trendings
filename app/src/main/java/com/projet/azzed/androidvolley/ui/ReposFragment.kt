@@ -20,6 +20,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.projet.azzed.androidvolley.MainActivity
 import com.projet.azzed.androidvolley.R
 import com.projet.azzed.androidvolley.adapters.RepoAdapter
 import com.projet.azzed.androidvolley.model.RepoModel
@@ -61,6 +62,13 @@ class ReposFragment : Fragment() {
         mRequestQueue = Volley.newRequestQueue(context)
 
         fetchJsonResponse()
+
+        recylcerRepo.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+            if (oldScrollY < 0)
+                (activity as MainActivity).hideBottom()
+            if (oldScrollY > 0)
+                (activity as MainActivity).showBottom()
+        }
 
         return root
     }
