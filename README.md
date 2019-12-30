@@ -16,6 +16,6 @@ Here is an android project that fetch github api to load most trendings repos cl
 
 - Here is how does it looks like :
 
-![alt text](https://github.com/boblinux/AndroidGithubTrends/blob/master/screen1.png){:height="200px" width="510px"}
-![alt text](https://github.com/boblinux/AndroidGithubTrends/blob/master/screen2.png){:height="200px" width="510px"}
-![alt text](https://github.com/boblinux/AndroidGithubTrends/blob/master/screen3.png){:height="200px" width="510px"}
+![alt text]((https://github.com/azze-r/AndroidGithubTrends/blob/master/screen1.jpg){:height="100px" width="300px"}
+![alt text](https://github.com/azze-r/AndroidGithubTrends/blob/master/screen2.jpg){:height="100px" width="300px"}
+![alt text]((https://github.com/azze-r/AndroidGithubTrends/blob/master/screen3.jpg){:height="100px" width="300px"}
