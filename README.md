@@ -25,5 +25,5 @@ Here is an android project that fetch github api to load most trendings repos cl
 
 # screen 3
 
-<img src="https://github.com/azze-r/AndroidGithubTrends/blob/master/screen3.jpg" width="400" height="600">
+<img src="https://github.com/azze-r/AndroidGithubTrends/blob/master/screen3.png" width="400" height="600">
 
