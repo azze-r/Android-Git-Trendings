@@ -2,6 +2,7 @@ package com.projet.azzed.androidvolley.ui
 
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.util.Log
@@ -63,11 +64,13 @@ class ReposFragment : Fragment() {
 
         fetchJsonResponse()
 
-        recylcerRepo.setOnScrollChangeListener { _, _, _, _, oldScrollY ->
-            if (oldScrollY < 0)
-                (activity as MainActivity).hideBottom()
-            if (oldScrollY > 0)
-                (activity as MainActivity).showBottom()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            recylcerRepo.setOnScrollChangeListener { _, _, _, _, oldScrollY ->
+                if (oldScrollY < 0)
+                    (activity as MainActivity).hideBottom()
+                if (oldScrollY > 0)
+                    (activity as MainActivity).showBottom()
+            }
         }
 
         return root
