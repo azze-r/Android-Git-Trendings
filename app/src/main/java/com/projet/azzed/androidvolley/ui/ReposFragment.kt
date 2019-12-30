@@ -63,7 +63,7 @@ class ReposFragment : Fragment() {
 
         fetchJsonResponse()
 
-        recylcerRepo.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+        recylcerRepo.setOnScrollChangeListener { _, _, _, _, oldScrollY ->
             if (oldScrollY < 0)
                 (activity as MainActivity).hideBottom()
             if (oldScrollY > 0)
