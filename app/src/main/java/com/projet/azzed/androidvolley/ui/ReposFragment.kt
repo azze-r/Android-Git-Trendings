@@ -45,7 +45,9 @@ class ReposFragment : Fragment() {
 
         val root = inflater.inflate(R.layout.fragment_repos, container, false)
         progress = root.findViewById(R.id.progress)
+        fab = root.findViewById(R.id.myfab)
         recylcerRepo = root.findViewById(R.id.recylcerRepo)
+
 
         if (arguments?.getString("langage").isNullOrEmpty()){
             val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
@@ -62,6 +64,9 @@ class ReposFragment : Fragment() {
         progress.visibility = View.VISIBLE
         mRequestQueue = Volley.newRequestQueue(context)
 
+        fab.setOnClickListener {
+            it.findNavController().navigate(R.id.action_navigation_repos_to_navigation_configure)
+        }
         fetchJsonResponse()
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

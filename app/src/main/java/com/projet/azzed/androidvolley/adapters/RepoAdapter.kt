@@ -34,12 +34,6 @@ class RepoAdapter(reposFragment: ReposFragment) : BaseListAdapter<RepoModel>(){
         }
 
         holder.itemView.setOnClickListener {
-//            val url = repo.html_url
-//
-//            val i = Intent(Intent.ACTION_VIEW)
-//            i.data = Uri.parse(url)
-//            myactivity.startActivity(i)
-
             val bundle = Bundle()
             bundle.putString("link",repo.html_url)
             it.findNavController().navigate(R.id.action_navigation_repos_to_detail_repo,bundle)
