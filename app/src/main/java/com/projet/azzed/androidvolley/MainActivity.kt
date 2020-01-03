@@ -18,12 +18,4 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment)
         nav_view.setupWithNavController(navController)
     }
-
-    fun hideBottom(){
-        nav_view.visibility = View.GONE
-    }
-
-    fun showBottom(){
-        nav_view.visibility = View.VISIBLE
-    }
 }

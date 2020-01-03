@@ -11,6 +11,10 @@
         android:label="@string/configure"
         tools:layout="@layout/fragment_configure_trends" >
         <action
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
             android:id="@+id/action_navigation_diapo_to_navigation_repos"
             app:destination="@id/navigation_repos"/>
         <argument
@@ -27,9 +31,17 @@
         android:label="@string/repos"
         tools:layout="@layout/fragment_repos" >
         <action
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
             android:id="@+id/action_navigation_repos_to_navigation_configure"
             app:destination="@id/navigation_configure" />
         <action
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
             android:id="@+id/action_navigation_repos_to_detail_repo"
             app:destination="@id/detail_repo" />
     </fragment>

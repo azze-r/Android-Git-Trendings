@@ -69,15 +69,6 @@ class ReposFragment : Fragment() {
         }
         fetchJsonResponse()
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            recylcerRepo.setOnScrollChangeListener { _, _, _, _, oldScrollY ->
-                if (oldScrollY < 0)
-                    (activity as MainActivity).hideBottom()
-                if (oldScrollY > 0)
-                    (activity as MainActivity).showBottom()
-            }
-        }
-
         return root
     }
 
