@@ -1,10 +1,10 @@
 <resources>
-    <string name="app_name">Git Trends</string>
-    <string name="frequency_trends">Frequency : daily, weekly or monthly</string>
-    <string name="choice_your_langage_p">Choice your favorite language</string>
-    <string name="next">Next</string>
-    <string name="saved_langage">kotlin</string>
+    <string name="app_name" translatable="false">Git Trends</string>
+    <string name="frequency_trends" translatable="false">Frequency : daily, weekly or monthly</string>
+    <string name="choice_your_langage_p" translatable="false">Choice your favorite language</string>
+    <string name="next" translatable="false">Next</string>
+    <string name="saved_langage" translatable="false">kotlin</string>
     <string name="saved_frequency">monthly</string>
-    <string name="configure">configure</string>
-    <string name="repos">repos</string>
+    <string name="configure" translatable="false">configure</string>
+    <string name="repos" translatable="false">repos</string>
 </resources>
