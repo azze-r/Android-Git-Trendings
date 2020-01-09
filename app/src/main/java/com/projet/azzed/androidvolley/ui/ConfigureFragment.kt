@@ -28,8 +28,8 @@ class ConfigureFragment : Fragment() {
     private var mRequestQueue: RequestQueue? = null
     var link = "https://github-trending-api.now.sh/languages"
     var arrayRepos = arrayListOf<String>()
-    lateinit var langageAutoComplete:AutoCompleteTextView
-    lateinit var frequencyAutoComplete:AutoCompleteTextView
+    lateinit var langageAutoComplete:androidx.appcompat.widget.AppCompatAutoCompleteTextView
+    lateinit var frequencyAutoComplete:androidx.appcompat.widget.AppCompatAutoCompleteTextView
     lateinit var button:FloatingActionButton
 
     override fun onCreateView(

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.ConfigureFragment">
 
-    <AutoCompleteTextView
+    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
         android:id="@+id/langageAutoComplete"
         android:layout_width="0dp"
         android:singleLine="true"
@@ -15,18 +15,16 @@
         android:fontFamily="sans-serif"
         android:textStyle="bold"
         android:hint="@string/choice_your_langage_p"
-        android:textColor="@color/colorGrey"
         app:layout_constraintBottom_toTopOf="@+id/frequencyAutoComplete"
         app:layout_constraintEnd_toEndOf="@+id/frequencyAutoComplete"
         app:layout_constraintStart_toStartOf="@+id/frequencyAutoComplete" />
 
-    <AutoCompleteTextView
+    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
         android:id="@+id/frequencyAutoComplete"
         android:layout_width="wrap_content"
         android:singleLine="true"
         android:fontFamily="sans-serif"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorGrey"
         android:textStyle="bold"
         android:hint="@string/frequency_trends"
         app:layout_constraintBottom_toBottomOf="parent"
