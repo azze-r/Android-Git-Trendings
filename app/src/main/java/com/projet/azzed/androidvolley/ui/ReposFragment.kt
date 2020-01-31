@@ -48,7 +48,6 @@ class ReposFragment : Fragment() {
         fab = root.findViewById(R.id.myfab)
         recylcerRepo = root.findViewById(R.id.recylcerRepo)
 
-
         if (arguments?.getString("langage").isNullOrEmpty()){
             val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
             val defaultLangage = resources.getString(R.string.saved_langage)
@@ -67,6 +66,8 @@ class ReposFragment : Fragment() {
         fab.setOnClickListener {
             it.findNavController().navigate(R.id.action_navigation_repos_to_navigation_configure)
         }
+
+        Log.i("tryhard","on create view")
         fetchJsonResponse()
 
         return root
@@ -111,7 +112,7 @@ class ReposFragment : Fragment() {
         mRequestQueue?.add(req)
     }
 
-    fun populateRecycler(array: List<RepoModel>){
+    private fun populateRecycler(array: List<RepoModel>){
         val repoAdapter = RepoAdapter(this)
         Log.i("tryhard", array.size.toString())
         repoAdapter.addAll(array)
@@ -123,7 +124,6 @@ class ReposFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-
         val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)!!
         with (sharedPref.edit()) {
             putString(getString(R.string.saved_langage),langage)
