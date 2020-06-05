@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Android-Git-Trendings.iml" filepath="$PROJECT_DIR$/.idea/modules/Android-Git-Trendings.iml" group="Android-Git-Trendings" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Android-Git-Trendings-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Android-Git-Trendings-app.iml" group="Android-Git-Trendings/app" />
       <module fileurl="file://$PROJECT_DIR$/AndroidGithubApi.iml" filepath="$PROJECT_DIR$/AndroidGithubApi.iml" />
       <module fileurl="file://$PROJECT_DIR$/AndroidGithubStars.iml" filepath="$PROJECT_DIR$/AndroidGithubStars.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/AndroidGithubStars-app.iml" filepath="$PROJECT_DIR$/app/AndroidGithubStars-app.iml" />
