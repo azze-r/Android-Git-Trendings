@@ -17,15 +17,15 @@ Here is an android project that fetch github api to load most trendings repos cl
 - Here is how does it looks like :
 
 # screen 1
-<img src="https://github.com/azze-r/GitTrendings/blob/master/screen1.jpg" width="400" height="500">
+<img src="https://github.com/azze-r/GitTrendings/blob/main/Screenshot_20200629-100402_Git%20Trends.jpg" width="160">
 
 # screen 2
 
-<img src="https://github.com/azze-r/GitTrendings/blob/master/screen2.jpg" width="400" height="500">
+<img src="https://github.com/azze-r/GitTrendings/blob/main/Screenshot_20200629-100411_Git%20Trends.jpg" width="160">
 
 # screen 3
 
-<img src="https://github.com/azze-r/GitTrendings/blob/master/screen3.png" width="400" height="500">
+<img src="https://github.com/azze-r/GitTrendings/blob/main/Screenshot_20200629-100419_Git%20Trends.jpg" width="160">
 
 Link on store :
 
