@@ -1,14 +1,13 @@
 package com.projet.azzed.androidvolley.ui
 
+import android.app.Activity
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
-import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
@@ -70,6 +69,7 @@ class ConfigureFragment : Fragment() {
         frequencyAutoComplete.setAdapter(adapter)
 
         button.setOnClickListener {
+            activity?.let { it1 -> hideKeyboard(it1) }
             if (langageAutoComplete.text.isEmpty() or frequencyAutoComplete.text.isEmpty()) {
                 Toast.makeText(context, "Please choice language and frequency", Toast.LENGTH_LONG).show()
             }
@@ -123,6 +123,17 @@ class ConfigureFragment : Fragment() {
         )
         /* Add your Requests to the RequestQueue to execute */
         mRequestQueue?.add(req)
+    }
+
+    fun hideKeyboard(activity: Activity) {
+        val imm: InputMethodManager = activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        //Find the currently focused view, so we can grab the correct window token from it.
+        var view = activity.currentFocus
+        //If no view currently has focus, create a new one, just so we can grab a window token from it
+        if (view == null) {
+            view = View(activity)
+        }
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
 }

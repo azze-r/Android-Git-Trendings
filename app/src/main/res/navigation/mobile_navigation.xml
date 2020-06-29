@@ -47,7 +47,6 @@
     </fragment>
 
 
-
     <fragment
         android:id="@+id/detail_repo"
         android:name="com.projet.azzed.androidvolley.ui.DetailFragment"
