@@ -27,7 +27,3 @@ Here is an android project that fetch github api to load most trendings repos cl
 
 <img src="https://github.com/azze-r/GitTrendings/blob/main/Screenshot_20200629-100419_Git%20Trends.jpg" width="160">
 
-Link on store :
-
-https://play.google.com/store/apps/details?id=com.projet.azzed.androidvolley
-
